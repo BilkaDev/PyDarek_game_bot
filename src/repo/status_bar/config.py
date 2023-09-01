@@ -8,6 +8,6 @@ images = {
     'hp': im.load_RGB2Gray(f'{icons_path}/status-bar_hp.png'),
     'mp': im.load_RGB2Gray(f'{icons_path}/status-bar_mp.png')
 }
-hp_bar_allowed_pixels_colors = np.array([79, 118, 121, 110, 62])
-bar_size = 94
-mana_bar_allowed_pixels_colors = np.array([68, 95, 97, 89, 52])
+hp_bar_allowed_pixels_colors = np.array([113, 121, 129, 140, 155])
+bar_size = 92
+mana_bar_allowed_pixels_colors = np.array([101, 107, 115, 126, 130])

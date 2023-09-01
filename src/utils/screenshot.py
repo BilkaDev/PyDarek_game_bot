@@ -4,7 +4,7 @@ import cv2
 
 latest_screenshot = None
 camera = mss.mss()
-monitor = camera.monitors[0]
+monitor = camera.monitors[-1]
 
 
 def get_screenshot():

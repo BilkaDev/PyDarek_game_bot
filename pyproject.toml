@@ -11,6 +11,7 @@ numba = "^0.57.1"
 tk = "^0.1.0"
 nptyping = "^2.5.0"
 pathlib = "^1.0.1"
+mss = "^9.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

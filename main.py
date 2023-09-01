@@ -6,6 +6,6 @@ from src.context.context import Context
 # dodac anty idlea
 context = Context()
 
-
 gui = Gui(context)
+
 gui.run()

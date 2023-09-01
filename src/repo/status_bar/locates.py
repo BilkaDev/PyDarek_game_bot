@@ -1,6 +1,6 @@
-from config import images
 from typing import Union
 from shared.typings import BBox, GrayImage
+from src.repo.status_bar.config import images
 from src.utils.vision import locate
 
 

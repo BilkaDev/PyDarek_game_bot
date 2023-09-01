@@ -2,6 +2,7 @@ from typing import Union
 from shared.typings import BBox, GrayImage
 import cv2
 
+
 def locate(compareImage: GrayImage, img: GrayImage, confidence: float = 0.85) -> Union[BBox, None]:
     match = cv2.matchTemplate(compareImage, img, cv2.TM_CCOEFF_NORMED)
     res = cv2.minMaxLoc(match)

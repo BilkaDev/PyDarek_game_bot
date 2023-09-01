@@ -84,6 +84,17 @@ files = [
 ]
 
 [[package]]
+name = "mss"
+version = "9.0.1"
+description = "An ultra fast cross-platform multiple screenshots module in pure python using ctypes."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "mss-9.0.1-py3-none-any.whl", hash = "sha256:7ee44db7ab14cbea6a3eb63813c57d677a109ca5979d3b76046e4bddd3ca1a0b"},
+    {file = "mss-9.0.1.tar.gz", hash = "sha256:6eb7b9008cf27428811fa33aeb35f3334db81e3f7cc2dd49ec7c6e5a94b39f12"},
+]
+
+[[package]]
 name = "nptyping"
 version = "2.5.0"
 description = "Type hints for NumPy."
@@ -298,4 +309,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "e672926c93efa42776861f7dcd31fe62c74644d4da787d59b8fd5c5aff99e240"
+content-hash = "45a0a0e4f0de204c214728b763f3a6d779df679888145b477390c49d5903d8e4"

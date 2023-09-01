@@ -7,17 +7,17 @@ class Log:
         self.text_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=50, height=10)
         self.text_area.grid(row=100, columnspan=3, pady=10, padx=10)
         self.text_area.tag_configure("red", foreground="red")
-        self._disableWrtieText()
+        self.disable_write_text()
 
     def added_log(self, text, color=None):
-        self._enableWriteText()
+        self.enable_write_text()
         self.text_area.insert(tk.END, text + "\n", color)
-        self._disableWrtieText()
+        self.disable_write_text()
 
-    def _enableWriteText(self):
+    def enable_write_text(self):
         self.text_area.config(state=tk.NORMAL)
 
-    def _disableWrtieText(self):
+    def disable_write_text(self):
         self.text_area.config(state=tk.DISABLED)
 
     def added_error(self, text):
