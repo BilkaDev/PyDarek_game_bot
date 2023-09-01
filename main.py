@@ -1,6 +1,5 @@
-from GUI.gui import Gui
-from context.context import Context
-import cv2
+from src.ui.gui import Gui
+from src.context.context import Context
 
 # TODO:
 # dodac auto mana

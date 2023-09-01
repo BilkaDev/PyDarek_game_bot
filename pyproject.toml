@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "PyDarek"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+opencv-python = "^4.8.0.76"
+numba = "^0.57.1"
+tk = "^0.1.0"
+nptyping = "^2.5.0"
+pathlib = "^1.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

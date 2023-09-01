@@ -1,0 +1,5 @@
+{
+    "auto_heal": true,
+    "hp_min_percent": 1,
+    "hp_heal_key": "1"
+}

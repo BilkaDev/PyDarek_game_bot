@@ -1,5 +1,6 @@
 import pathlib
-import utils.image as im
+import src.utils.image as im
+import numpy as np
 
 dir_path = pathlib.Path(__file__).parent.resolve()
 icons_path = f'{dir_path}/images'
