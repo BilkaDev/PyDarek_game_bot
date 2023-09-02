@@ -1,6 +1,7 @@
 import time
 
 from src.app.healing import auto_heal_hp
+from src.app.middleware.battle_list import set_context_battle_list_middleware
 from src.app.middleware.screenshot import set_screenshot_middleware
 from src.app.middleware.status_bar import set_context_status_bar_middleware
 from src.utils import get_frequency
@@ -26,3 +27,4 @@ class Darek:
     def handle_game_data_middleware(self):
         set_screenshot_middleware(self.context)
         set_context_status_bar_middleware(self.context)
+        set_context_battle_list_middleware(self.context)

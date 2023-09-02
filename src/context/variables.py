@@ -12,3 +12,7 @@ class HealingKey(Enum):
 class StatusBarKey(Enum):
     HP_PERCENT = "hp_percent"
     MP_PERCENT = "mp_percent"
+
+
+class BattleListKey(Enum):
+    CREATURES = 'creatures'

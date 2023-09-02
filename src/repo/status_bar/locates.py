@@ -7,7 +7,6 @@ from src.utils.hash import cache_object_position
 
 @cache_object_position
 def get_hp_icon_position(screenshot: GrayImage) -> Union[BBox, None]:
-    print('testing')
     return locate(screenshot, images['hp'])
 
 

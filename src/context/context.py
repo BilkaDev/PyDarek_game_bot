@@ -1,7 +1,7 @@
 import json
 
 from shared.typings import GrayImage
-from src.context.variables import HealingKey, StatusBarKey
+from src.context.variables import HealingKey, StatusBarKey, BattleListKey
 
 FILE_NAME = "config.json"
 config = {
@@ -31,6 +31,9 @@ class Context:
     file_name = FILE_NAME
     config = config
     _screenshot: GrayImage = None
+    _battle_list = {
+        BattleListKey.CREATURES: []
+    }
 
     def __init__(self):
         self.config = read_config()
@@ -56,3 +59,9 @@ class Context:
 
     def set_status_bar(self, key: StatusBarKey, value):
         self.config['status_bar'][key.value] = value
+
+    def get_battle_list(self, key: BattleListKey, default=None):
+        return self._battle_list.get(key.value, default)
+
+    def set_battle_list(self, key: BattleListKey, value):
+        self._battle_list[key.value] = value
