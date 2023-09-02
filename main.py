@@ -1,11 +1,17 @@
-from src.ui.gui import Gui
+from src.app.threads.darek import Darek
+from src.app.threads.ui import UiThread
 from src.context.context import Context
 
-# TODO:
-# dodac auto mana
-# dodac anty idlea
-context = Context()
 
-gui = Gui(context)
+def main():
+    context = Context()
+    ui_thread = UiThread(context)
+    ui_thread.start()
 
-gui.run()
+    darek = Darek(context)
+    darek.mainloop()
+    print("Done")
+
+
+if __name__ == "__main__":
+    main()

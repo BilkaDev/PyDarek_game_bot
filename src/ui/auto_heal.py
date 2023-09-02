@@ -19,7 +19,7 @@ class AutoHeal:
 
     def on_button_click(self):
         heal_enabled = self.checkbox_var.get()
-        heal_amount = int(self.heal_entry.get())
+        heal_amount = float(self.heal_entry.get())
         heal_key = self.heal_key_entry.get()
 
         self.context.set_healing(HealingKey.AUTO_HEAL, heal_enabled)

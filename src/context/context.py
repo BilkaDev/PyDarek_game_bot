@@ -1,9 +1,10 @@
 import json
 
+from shared.typings import GrayImage
 from src.context.variables import HealingKey, StatusBarKey
 
 FILE_NAME = "config.json"
-context = {
+config = {
     "status_bar": {
         StatusBarKey.HP_PERCENT.value: 0,
         StatusBarKey.MP_PERCENT.value: 0,
@@ -22,29 +23,36 @@ def read_config():
     try:
         with open(FILE_NAME, 'r') as config_file:
             return json.load(config_file)
-    except  (FileNotFoundError, json.JSONDecodeError):
-        return context
+    except (FileNotFoundError, json.JSONDecodeError):
+        return config
 
 
 class Context:
     file_name = FILE_NAME
-    context = context
+    config = config
+    _screenshot: GrayImage = None
 
     def __init__(self):
-        self.context = read_config()
+        self.config = read_config()
+
+    def get_screenshot(self):
+        return self._screenshot
+
+    def set_screenshot(self, screenshot: GrayImage):
+        self._screenshot = screenshot
 
     def save_config(self):
         with open(FILE_NAME, 'w') as config_file:
-            json.dump(self.context, config_file, indent=4)
+            json.dump(self.config, config_file, indent=4)
 
     def get_healing(self, key: HealingKey, default=None):
-        return self.context['healing'].get(key.value, default)
+        return self.config['healing'].get(key.value, default)
 
     def set_healing(self, key: HealingKey, value):
-        self.context['healing'][key.value] = value
+        self.config['healing'][key.value] = value
 
     def get_status_bar(self, key: StatusBarKey, default=None):
-        return self.context['status_bar'].get(key.value, default)
+        return self.config['status_bar'].get(key.value, default)
 
     def set_status_bar(self, key: StatusBarKey, value):
-        self.context['status_bar'][key.value] = value
+        self.config['status_bar'][key.value] = value
