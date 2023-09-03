@@ -37,3 +37,14 @@ def crop(image: GrayImage, x: int, y: int, width: int, height: int) -> GrayImage
 
 def load(path: str) -> np.ndarray:
     return np.array(cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB), dtype=np.uint8)
+
+
+166
+
+
+def replace_values(image: GrayImage, from_values: list, to_value: int) -> np.ndarray:
+    data = np.array(image)
+    for from_value in from_values:
+        data[data == from_value] = to_value
+    data[data != to_value] = 0
+    return data

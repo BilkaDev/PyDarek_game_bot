@@ -1,5 +1,4 @@
 from numba import njit
-
 from shared.typings import GrayImage
 from src.repo.status_bar import extractors, locates
 from src.repo.status_bar.config import hp_bar_allowed_pixels_colors, mana_bar_allowed_pixels_colors
@@ -16,19 +15,17 @@ def get_hp_percentage(image: GrayImage) -> float:
     if heart_pos is None:
         return 0
     bar = extractors.get_hp_bar(image, heart_pos)
-    middle_bar = bar[1]
-    count = 0
-    for i in range(len(middle_bar)):
-        count += 1 if middle_bar[i] in hp_bar_allowed_pixels_colors else 0
-    return count / len(middle_bar)
+    count = get_percentage_bar(bar, 'hp')
+    return count
 
 
 @njit(cache=True, fastmath=True)
-def get_percentage_bar(image) -> float:
+def get_percentage_bar(image, type_bar) -> float:
     middle_bar = image[1]
+    allowed_pixels = hp_bar_allowed_pixels_colors if type_bar == 'hp' else mana_bar_allowed_pixels_colors
     count = 0
     for i in range(len(middle_bar)):
-        count += 1 if middle_bar[i] in mana_bar_allowed_pixels_colors else 0
+        count += 1 if middle_bar[i] in allowed_pixels else 0
     return count / len(middle_bar)
 
 
@@ -43,5 +40,5 @@ def get_mp_percentage(image: GrayImage) -> float:
     if mana_pos is None:
         return 0
     bar = extractors.get_mp_bar(image, mana_pos)
-    count = get_percentage_bar(bar)
+    count = get_percentage_bar(bar, 'mana')
     return count

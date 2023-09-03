@@ -1,21 +1,24 @@
 import json
 
 from shared.typings import GrayImage
-from src.context.variables import HealingKey, StatusBarKey, BattleListKey
+from src.context.variables import HealingKeys, StatusBarKeys, BattleListKeys, CavebotConfigKeys
 
 FILE_NAME = "config.json"
 config = {
-    "status_bar": {
-        StatusBarKey.HP_PERCENT.value: 0,
-        StatusBarKey.MP_PERCENT.value: 0,
-    },
     "healing":
         {
-            HealingKey.MP_HEAL_KEY.value: "",
-            HealingKey.MP_MIN_PERCENT.value: 0,
-            HealingKey.HP_HEAL_KEY.value: "",
-            HealingKey.HP_MIN_PERCENT.value: 0
+            HealingKeys.MP_HEAL_KEY.value: "",
+            HealingKeys.MP_MIN_PERCENT.value: 0,
+            HealingKeys.HP_HEAL_KEY.value: "",
+            HealingKeys.HP_MIN_PERCENT.value: 0
         },
+    "cavebot":
+        {
+            CavebotConfigKeys.AUTO_ATTACK_ENABLED: False,
+            CavebotConfigKeys.MANA_TRAIN_ENABLED: False,
+            CavebotConfigKeys.MANA_TRAIN_KEY: "",
+            CavebotConfigKeys.MANA_TRAIN_MAX_PERCENT: 0,
+        }
 }
 
 
@@ -32,7 +35,12 @@ class Context:
     config = config
     _screenshot: GrayImage = None
     _battle_list = {
-        BattleListKey.CREATURES: []
+        BattleListKeys.CREATURES: [],
+        BattleListKeys.IS_TARGET: False
+    }
+    _status_bar = {
+        StatusBarKeys.HP_PERCENT: 0,
+        StatusBarKeys.MP_PERCENT: 0,
     }
 
     def __init__(self):
@@ -48,20 +56,26 @@ class Context:
         with open(FILE_NAME, 'w') as config_file:
             json.dump(self.config, config_file, indent=4)
 
-    def get_healing(self, key: HealingKey, default=None):
+    def get_healing(self, key: HealingKeys, default=None):
         return self.config['healing'].get(key.value, default)
 
-    def set_healing(self, key: HealingKey, value):
+    def set_healing(self, key: HealingKeys, value):
         self.config['healing'][key.value] = value
 
-    def get_status_bar(self, key: StatusBarKey, default=None):
-        return self.config['status_bar'].get(key.value, default)
+    def get_status_bar(self, key: StatusBarKeys, default=None):
+        return self._status_bar.get(key.value, default)
 
-    def set_status_bar(self, key: StatusBarKey, value):
-        self.config['status_bar'][key.value] = value
+    def set_status_bar(self, key: StatusBarKeys, value):
+        self._status_bar[key.value] = value
 
-    def get_battle_list(self, key: BattleListKey, default=None):
+    def get_battle_list(self, key: BattleListKeys, default=None):
         return self._battle_list.get(key.value, default)
 
-    def set_battle_list(self, key: BattleListKey, value):
+    def set_battle_list(self, key: BattleListKeys, value):
         self._battle_list[key.value] = value
+
+    def get_cavebot_config(self, key: CavebotConfigKeys, default=None):
+        return self.config['cavebot'].get(key.value, default)
+
+    def set_cavebot_config(self, key: CavebotConfigKeys, value):
+        self.config['cavebot'][key.value] = value

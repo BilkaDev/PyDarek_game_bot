@@ -1,3 +1,4 @@
+from src.utils.image import show
 from src.utils.screenshot import get_screenshot
 
 

@@ -2,6 +2,7 @@ import pathlib
 import src.utils.image as im
 import numpy as np
 from src.utils.hash import hash_it
+from wiki.monsters import creatures
 
 dir_path = pathlib.Path(__file__).parent.resolve()
 icons_path = f'{dir_path}/images'
@@ -9,11 +10,11 @@ monsters_path = f'{dir_path}/images/monsters'
 images = {
     'battle_list_icon': im.load_RGB2Gray(f'{icons_path}/battle-list-icon.png'),
 }
-size_wh = (130, 200)
+size_names_wh = (130, 200)
+size_icons_wh = (22, 200)
 
 creatures_names_images_hashes = {}
 
-creatures = ["Cave Rat"]
 
 for creature_name in creatures:
     """

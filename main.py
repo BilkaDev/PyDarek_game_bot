@@ -10,7 +10,6 @@ def main():
 
     darek = Darek(context)
     darek.mainloop()
-    print("Done")
 
 
 if __name__ == "__main__":

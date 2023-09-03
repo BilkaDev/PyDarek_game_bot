@@ -13,3 +13,5 @@ def get_hp_icon_position(screenshot: GrayImage) -> Union[BBox, None]:
 @cache_object_position
 def get_mp_icon_position(screenshot: GrayImage) -> Union[BBox, None]:
     return locate(screenshot, images['mp'])
+
+
