@@ -20,7 +20,6 @@ class Gui:
     def _start_off_button(self):
         self._text_start_off_button = ctk.tk.StringVar()
         self._text_start_off_button.set("Start")
-        text = f'{"Start" if self.context.is_enabled else "Stop"}(CTRL+1)'
         element = ctk.tk.Button(self.root, textvariable=self._text_start_off_button,
                                 command=self._toggle_button)
         element.grid(row=self.row, column=1, padx=5, pady=10)

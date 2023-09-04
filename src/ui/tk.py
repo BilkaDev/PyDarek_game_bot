@@ -29,9 +29,3 @@ def create_row(root, row, text, checkbox_text=None):
     checkbox.grid(row=row, column=2, padx=10, pady=5)
 
     return label_entry, checkbox_var, checkbox
-
-
-def create_button(root, text, command, row, column=1, padx=10, pady=5):
-    element = tk.Button(root, text, command=command)
-    element.grid(row=row, column=column, padx=padx, pady=pady)
-    return element
