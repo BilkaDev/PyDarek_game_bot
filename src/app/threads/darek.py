@@ -17,9 +17,13 @@ class Darek:
         print("Darek is running")
         frequency = get_frequency()
         while True:
+            if not self.context.is_enabled:
+                continue
             start_time = time.time()
             self.handle_game_data_middleware()
             # tasks
+            if not self.context.is_enabled:
+                continue
             self.handle_game_data_tasks()
             end_time = time.time()
             diff_time = end_time - start_time
@@ -28,8 +32,13 @@ class Darek:
 
     def handle_game_data_middleware(self):
         set_screenshot_middleware(self.context)
-        set_context_status_bar_middleware(self.context)
-        set_context_battle_list_middleware(self.context)
+        try:
+            set_context_status_bar_middleware(self.context)
+            set_context_battle_list_middleware(self.context)
+        except TypeError as e:
+            print(e)
+            self.context.ui_log.added_error("Please open Tibia and open windows battle list and skills")
+            self.context.toggle_context_enable()
 
     def handle_game_data_tasks(self):
         auto_heal_hp(self.context)

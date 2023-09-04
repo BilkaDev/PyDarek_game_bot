@@ -7,7 +7,6 @@ def main():
     context = Context()
     ui_thread = UiThread(context)
     ui_thread.start()
-
     darek = Darek(context)
     darek.mainloop()
 

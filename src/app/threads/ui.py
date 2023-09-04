@@ -10,4 +10,5 @@ class UiThread(Thread):
 
     def run(self):
         gui = Gui(self.context)
+        self.context.ui_log = gui.log
         gui.run()

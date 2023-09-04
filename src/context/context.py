@@ -33,6 +33,8 @@ def read_config():
 class Context:
     file_name = FILE_NAME
     config = config
+    is_enabled = False
+    ui_log = None
     _screenshot: GrayImage = None
     _battle_list = {
         BattleListKeys.CREATURES: [],
@@ -45,6 +47,9 @@ class Context:
 
     def __init__(self):
         self.config = read_config()
+
+    def toggle_context_enable(self):
+        self.is_enabled = not self.is_enabled
 
     def get_screenshot(self):
         return self._screenshot

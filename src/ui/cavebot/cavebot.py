@@ -15,6 +15,7 @@ class Cavebot:
         self.checkbox.grid(row=gui.row, column=0, padx=10, pady=5)
         apply_button = ctk.tk.Button(gui.root, text="Apply", command=self.on_button_click)
         apply_button.grid(row=gui.row, column=1, padx=10, pady=5)
+        gui.row += 1
 
     def on_button_click(self):
         auto_attack_enabled = self.checkbox_var.get()
