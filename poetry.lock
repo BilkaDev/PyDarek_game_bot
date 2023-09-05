@@ -159,6 +159,7 @@ files = [
 
 [package.dependencies]
 numpy = {version = ">=1.20.0,<2.0.0", markers = "python_version >= \"3.8\""}
+typing-extensions = {version = ">=4.0.0,<5.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
 build = ["invoke (>=1.6.0)", "pip-tools (>=6.5.0)"]
@@ -259,9 +260,11 @@ files = [
 
 [package.dependencies]
 numpy = [
+    {version = ">=1.21.0", markers = "python_version == \"3.9\" and platform_system == \"Darwin\" and platform_machine == \"arm64\""},
     {version = ">=1.23.5", markers = "python_version >= \"3.11\""},
     {version = ">=1.21.4", markers = "python_version >= \"3.10\" and platform_system == \"Darwin\" and python_version < \"3.11\""},
     {version = ">=1.21.2", markers = "platform_system != \"Darwin\" and python_version >= \"3.10\" and python_version < \"3.11\""},
+    {version = ">=1.19.3", markers = "platform_system == \"Linux\" and platform_machine == \"aarch64\" and python_version >= \"3.8\" and python_version < \"3.10\" or python_version > \"3.9\" and python_version < \"3.10\" or python_version >= \"3.9\" and platform_system != \"Darwin\" and python_version < \"3.10\" or python_version >= \"3.9\" and platform_machine != \"arm64\" and python_version < \"3.10\""},
 ]
 
 [[package]]
@@ -530,8 +533,8 @@ files = [
 
 [package.dependencies]
 Pillow = [
+    {version = ">=9.2.0", markers = "python_version == \"3.10\" or python_version == \"3.9\""},
     {version = ">=9.3.0", markers = "python_version == \"3.11\""},
-    {version = ">=9.2.0", markers = "python_version == \"3.10\""},
 ]
 pyscreenshot = "*"
 
@@ -604,6 +607,17 @@ python-versions = "*"
 files = [
     {file = "tk-0.1.0-py3-none-any.whl", hash = "sha256:703a69ff0d5ba2bd2f7440582ad10160e4a6561595d33457dc6caa79b9bf4930"},
     {file = "tk-0.1.0.tar.gz", hash = "sha256:60bc8923d5d35f67f5c6bd93d4f0c49d2048114ec077768f959aef36d4ed97f8"},
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.7.1"
+description = "Backported and Experimental Type Hints for Python 3.7+"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "typing_extensions-4.7.1-py3-none-any.whl", hash = "sha256:440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36"},
+    {file = "typing_extensions-4.7.1.tar.gz", hash = "sha256:b75ddc264f0ba5615db7ba217daeb99701ad295353c45f9e95963337ceeeffb2"},
 ]
 
 [[package]]
@@ -713,5 +727,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.10"
-content-hash = "fa93a72d8a6736345a32999288c02911ab2c69b79af95687ba77b12fc4018f77"
+python-versions = "^3.9.2"
+content-hash = "af2779167a948c6ddb7b75d53d5e731be4ad0b7bfa201cda200d25e581ac060b"

@@ -14,10 +14,10 @@ config = {
         },
     "cavebot":
         {
-            CavebotConfigKeys.AUTO_ATTACK_ENABLED: False,
-            CavebotConfigKeys.MANA_TRAIN_ENABLED: False,
-            CavebotConfigKeys.MANA_TRAIN_KEY: "",
-            CavebotConfigKeys.MANA_TRAIN_MAX_PERCENT: 0,
+            CavebotConfigKeys.AUTO_ATTACK_ENABLED.value: False,
+            CavebotConfigKeys.MANA_TRAIN_ENABLED.value: False,
+            CavebotConfigKeys.MANA_TRAIN_KEY.value: "",
+            CavebotConfigKeys.MANA_TRAIN_MAX_PERCENT.value: 0,
         }
 }
 
