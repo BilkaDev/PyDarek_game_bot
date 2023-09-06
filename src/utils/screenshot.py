@@ -20,9 +20,8 @@ def get_screenshot():
 
     screenshot_np = np.array(screenshot)
 
-    screenshot_without_alpha = screenshot_np[:, :, 0:3]
     if screenshot is None:
         return latest_screenshot
-    latest_screenshot = cv2.cvtColor(screenshot_without_alpha, cv2.COLOR_BGR2GRAY)
+    latest_screenshot = cv2.cvtColor(screenshot_np, cv2.COLOR_BGRA2GRAY)
 
     return latest_screenshot
