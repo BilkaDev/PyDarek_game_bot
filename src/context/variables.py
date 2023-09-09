@@ -24,3 +24,10 @@ class CavebotConfigKeys(Enum):
     MANA_TRAIN_ENABLED = 'mana_train_enabled'
     MANA_TRAIN_KEY = 'mana_train_key'
     MANA_TRAIN_MAX_PERCENT = 'mana_train_max_percent'
+    CAVEBOT_ENABLED = 'cavebot_enabled'
+
+
+class WaypointKeys(Enum):
+    NEXT_WAYPOINT_TO_MOVE = 'next_waypoint_to_move'
+    WAYPOINTS = 'waypoints'
+    LAST_WAYPOINTS = 'last_waypoints'

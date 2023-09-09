@@ -8,4 +8,5 @@ def auto_attack(context):
     if context.get_battle_list(BattleListKeys.IS_TARGET):
         return
     if len(context.get_battle_list(BattleListKeys.CREATURES)) > 0:
+        context.set_battle_list(BattleListKeys.IS_TARGET, True)
         keyboard.press('space')

@@ -1,11 +1,12 @@
 import time
 
-from src.app.cavebot import auto_mana_train
+from src.app.cavebot.cavebot import auto_mana_train, auto_move_to_next_waypoint
 from src.app.healing import auto_heal_hp
 from src.app.middleware.battle_list import set_context_battle_list_middleware
-from src.app.middleware.screenshot import set_screenshot_middleware
+from src.app.middleware.screenshot import set_context_screenshot_middleware
 from src.app.middleware.status_bar import set_context_status_bar_middleware
-from src.app.targeting import auto_attack
+from src.app.cavebot.targeting import auto_attack
+from src.app.middleware.waypoint import set_context_waypoint_middleware
 from src.utils import get_frequency
 
 
@@ -14,14 +15,22 @@ class Darek:
         self.context = context
 
     def mainloop(self):
+
         print("Darek is running")
         frequency = get_frequency()
         while True:
-            if not self.context.is_enabled:
-                continue
             start_time = time.time()
-            self.handle_game_data_middleware()
+            if not self.context.is_enabled:
+                time.sleep(0.05)
+                continue
+            try:
+                self.handle_game_data_middleware()
             # tasks
+            except TypeError as e:
+                print(e)
+                self.context.ui_log.added_error("Please open Tibia and open windows battle list and skills")
+                self.context.toggle_context_enable()
+                continue
             if not self.context.is_enabled:
                 continue
             self.handle_game_data_tasks()
@@ -31,16 +40,13 @@ class Darek:
             time.sleep(max(0.05 - diff_time, 0))
 
     def handle_game_data_middleware(self):
-        set_screenshot_middleware(self.context)
-        try:
-            set_context_status_bar_middleware(self.context)
-            set_context_battle_list_middleware(self.context)
-        except TypeError as e:
-            print(e)
-            self.context.ui_log.added_error("Please open Tibia and open windows battle list and skills")
-            self.context.toggle_context_enable()
+        set_context_screenshot_middleware(self.context)
+        set_context_status_bar_middleware(self.context)
+        set_context_battle_list_middleware(self.context)
+        set_context_waypoint_middleware(self.context)
 
     def handle_game_data_tasks(self):
         auto_heal_hp(self.context)
         auto_attack(self.context)
         auto_mana_train(self.context)
+        auto_move_to_next_waypoint(self.context)

@@ -39,9 +39,6 @@ def load(path: str) -> np.ndarray:
     return np.array(cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB), dtype=np.uint8)
 
 
-166
-
-
 def replace_values(image: GrayImage, from_values: list, to_value: int) -> np.ndarray:
     data = np.array(image)
     for from_value in from_values:

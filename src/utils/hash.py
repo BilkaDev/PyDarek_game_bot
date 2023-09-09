@@ -24,7 +24,7 @@ def cache_object_position(func):
 
         if res is None:
             none_count += 1
-            if none_count > 20:
+            if none_count > 10:
                 return None
             return last_x, last_y, last_w, last_h
         none_count = 0

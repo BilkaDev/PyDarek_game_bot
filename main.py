@@ -3,6 +3,7 @@ from src.app.threads.ui import UiThread
 from src.context.context import Context
 
 
+
 def main():
     context = Context()
     ui_thread = UiThread(context)

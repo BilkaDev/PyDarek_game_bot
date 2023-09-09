@@ -1,7 +1,7 @@
 import json
 
 from shared.typings import GrayImage
-from src.context.variables import HealingKeys, StatusBarKeys, BattleListKeys, CavebotConfigKeys
+from src.context.variables import HealingKeys, StatusBarKeys, BattleListKeys, CavebotConfigKeys, WaypointKeys
 
 FILE_NAME = "config.json"
 config = {
@@ -16,6 +16,7 @@ config = {
         {
             CavebotConfigKeys.AUTO_ATTACK_ENABLED.value: False,
             CavebotConfigKeys.MANA_TRAIN_ENABLED.value: False,
+            CavebotConfigKeys.CAVEBOT_ENABLED.value: True,
             CavebotConfigKeys.MANA_TRAIN_KEY.value: "",
             CavebotConfigKeys.MANA_TRAIN_MAX_PERCENT.value: 0,
         }
@@ -36,13 +37,18 @@ class Context:
     is_enabled = False
     ui_log = None
     _screenshot: GrayImage = None
-    _battle_list = {
+    battle_list = {
         BattleListKeys.CREATURES: [],
         BattleListKeys.IS_TARGET: False
     }
-    _status_bar = {
+    status_bar = {
         StatusBarKeys.HP_PERCENT: 0,
         StatusBarKeys.MP_PERCENT: 0,
+    }
+    waypoint = {
+        WaypointKeys.LAST_WAYPOINTS.value: [],
+        WaypointKeys.WAYPOINTS: None,
+        WaypointKeys.NEXT_WAYPOINT_TO_MOVE: None,
     }
 
     def __init__(self):
@@ -68,19 +74,25 @@ class Context:
         self.config['healing'][key.value] = value
 
     def get_status_bar(self, key: StatusBarKeys, default=None):
-        return self._status_bar.get(key.value, default)
+        return self.status_bar.get(key.value, default)
 
     def set_status_bar(self, key: StatusBarKeys, value):
-        self._status_bar[key.value] = value
+        self.status_bar[key.value] = value
 
     def get_battle_list(self, key: BattleListKeys, default=None):
-        return self._battle_list.get(key.value, default)
+        return self.battle_list.get(key.value, default)
 
     def set_battle_list(self, key: BattleListKeys, value):
-        self._battle_list[key.value] = value
+        self.battle_list[key.value] = value
 
     def get_cavebot_config(self, key: CavebotConfigKeys, default=None):
         return self.config['cavebot'].get(key.value, default)
 
     def set_cavebot_config(self, key: CavebotConfigKeys, value):
         self.config['cavebot'][key.value] = value
+
+    def get_waypoint(self, key: WaypointKeys, default=None):
+        return self.waypoint.get(key.value, default)
+
+    def set_waypoint(self, key: WaypointKeys, value):
+        self.waypoint[key.value] = value
