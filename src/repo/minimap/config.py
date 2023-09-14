@@ -23,7 +23,7 @@ images = {
 
 minimap_size_wh = (100, 100)
 hero_pos = 50, 50
-middle_mark_pos = (4, 3)  # x,y
+middle_mark_pos = (5, 4)  # x,y
 
 window_game_size = (11, 15)  # for zoom -1 Height,width
 

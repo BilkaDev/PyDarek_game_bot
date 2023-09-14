@@ -55,6 +55,5 @@ def get_waypoints(screenshot: GrayImage) -> Union[list[tuple[int, int, int]], No
 
 def get_hash_mark(minimap, pos: tuple[int, int]):
     mark = extract_mark_to_hash(minimap, pos)
-
     hashed_mark = hash_it(np.ravel(mark))
     return hashed_mark

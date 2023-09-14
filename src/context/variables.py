@@ -12,6 +12,7 @@ class HealingKeys(Enum):
 class StatusBarKeys(Enum):
     HP_PERCENT = "hp_percent"
     MP_PERCENT = "mp_percent"
+    FOLLOW_MONSTER_ENABLED = "follow_monster_enabled"
 
 
 class BattleListKeys(Enum):
@@ -25,6 +26,8 @@ class CavebotConfigKeys(Enum):
     MANA_TRAIN_KEY = 'mana_train_key'
     MANA_TRAIN_MAX_PERCENT = 'mana_train_max_percent'
     CAVEBOT_ENABLED = 'cavebot_enabled'
+    FOOD_ENABLED = 'food_enabled'
+    FOOD_KEY = 'food_key'
 
 
 class WaypointKeys(Enum):

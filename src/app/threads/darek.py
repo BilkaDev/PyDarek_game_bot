@@ -7,6 +7,9 @@ from src.app.middleware.screenshot import set_context_screenshot_middleware
 from src.app.middleware.status_bar import set_context_status_bar_middleware
 from src.app.cavebot.targeting import auto_attack
 from src.app.middleware.waypoint import set_context_waypoint_middleware
+from src.app.cavebot.eat_food import auto_eat_food
+from src.context.variables import StatusBarKeys
+from src.repo.status_bar.core import press_follow_button
 from src.utils import get_frequency
 
 
@@ -50,3 +53,6 @@ class Darek:
         auto_attack(self.context)
         auto_mana_train(self.context)
         auto_move_to_next_waypoint(self.context)
+        if not self.context.get_status_bar(StatusBarKeys.FOLLOW_MONSTER_ENABLED):
+            press_follow_button(self.context.get_screenshot())
+        auto_eat_food(self.context)

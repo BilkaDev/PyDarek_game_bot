@@ -16,9 +16,11 @@ config = {
         {
             CavebotConfigKeys.AUTO_ATTACK_ENABLED.value: False,
             CavebotConfigKeys.MANA_TRAIN_ENABLED.value: False,
-            CavebotConfigKeys.CAVEBOT_ENABLED.value: True,
             CavebotConfigKeys.MANA_TRAIN_KEY.value: "",
             CavebotConfigKeys.MANA_TRAIN_MAX_PERCENT.value: 0,
+            CavebotConfigKeys.CAVEBOT_ENABLED.value: True,
+            CavebotConfigKeys.FOOD_ENABLED.value: True,
+            CavebotConfigKeys.FOOD_KEY.value: 'f4',
         }
 }
 
@@ -44,6 +46,8 @@ class Context:
     status_bar = {
         StatusBarKeys.HP_PERCENT: 0,
         StatusBarKeys.MP_PERCENT: 0,
+        StatusBarKeys.FOLLOW_MONSTER_ENABLED: False,
+
     }
     waypoint = {
         WaypointKeys.LAST_WAYPOINTS.value: [],

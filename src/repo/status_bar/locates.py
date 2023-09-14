@@ -15,3 +15,6 @@ def get_mp_icon_position(screenshot: GrayImage) -> Union[BBox, None]:
     return locate(screenshot, images['mp'])
 
 
+@cache_object_position
+def get_pvp_button_position(screenshot: GrayImage) -> Union[BBox, None]:
+    return locate(screenshot, images['pvp_button'])

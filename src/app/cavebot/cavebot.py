@@ -30,9 +30,6 @@ def auto_move_to_next_waypoint(context):
         return
     if not context.get_cavebot_config(CavebotConfigKeys.CAVEBOT_ENABLED):
         return
-    if last_time + delay > time.time():
-        return
-    last_time = time.time()
 
     waypoints = context.get_waypoint(WaypointKeys.WAYPOINTS)
 
@@ -40,14 +37,17 @@ def auto_move_to_next_waypoint(context):
     next_waypoint = choose_next_waypoint(waypoints, last_waypoints_hash)
     if next_waypoint is None:
         context.set_waypoint(WaypointKeys.LAST_WAYPOINTS, [])
+        entry_to_mark = True
         return
     x, y, hashed = next_waypoint
     center_x = x + middle_mark_pos[0]
     center_y = y + middle_mark_pos[1]
 
-    click_on_minimap(x + middle_mark_pos[0], y + middle_mark_pos[1])
+    if last_time + delay < time.time():
+        click_on_minimap(x + middle_mark_pos[0], y + middle_mark_pos[1])
+        last_time = time.time()
 
-    if 48 <= center_x <= 52 and 48 <= center_y <= 52:
+    if 49 <= center_x <= 51 and 49 <= center_y <= 51:
         entry_to_mark = False
         if hashed in last_waypoints_hash:
             return
@@ -68,26 +68,33 @@ def choose_next_waypoint(waypoints, last_waypoints_hash):
         center_y2 = y2 + middle_mark_pos[1]
 
         distance = math.sqrt((center_x2 - center[0]) ** 2 + (center_y2 - center[1]) ** 2)
+        last_hash = last_waypoints_hash[-1] if len(last_waypoints_hash) > 0 else None
+        if  last_hash is None:
+            entry_to_mark = True
+        if last_hash == waypoint[2]:
+            if distance > 14:
+                entry_to_mark = True
+
+        if waypoint[2] in last_waypoints_hash:
+            continue
+
         if entry_to_mark and distance <= 12:
             return waypoint
         if not entry_to_mark and distance <= 12:
             continue
 
-        if waypoint[2] in last_waypoints_hash:
-            continue
-
         if distance < closest_distance:
             closest_distance = distance
             closest_point = waypoint
-            if distance <= 15:
-                entry_to_mark = True
+
     return closest_point
 
 
+# 10,11,
 def append_hashed(list_hash, hashed: int):
     if len(list_hash) > 4:
         list_hash.append(hashed)
-        return list_hash[:1]
+        return list_hash[1:]
     else:
         list_hash.append(hashed)
         return list_hash

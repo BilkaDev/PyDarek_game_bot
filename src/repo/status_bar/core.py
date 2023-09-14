@@ -1,7 +1,13 @@
 from numba import njit
 from shared.typings import GrayImage
 from src.repo.status_bar import extractors, locates
-from src.repo.status_bar.config import hp_bar_allowed_pixels_colors, mana_bar_allowed_pixels_colors
+from src.repo.status_bar.config import hp_bar_allowed_pixels_colors, mana_bar_allowed_pixels_colors, \
+    hashed_follow_monster_button
+from src.repo.status_bar.extractors import get_follow_monster_button
+from src.repo.status_bar.locates import get_pvp_button_position
+from src.utils import mouse
+from src.utils.hash import hash_it
+from src.utils.image import show
 
 
 def get_hp_percentage(image: GrayImage) -> float:
@@ -42,3 +48,17 @@ def get_mp_percentage(image: GrayImage) -> float:
     bar = extractors.get_mp_bar(image, mana_pos)
     count = get_percentage_bar(bar, 'mana')
     return count
+
+
+def get_follow_enabled(image: GrayImage) -> bool:
+    pos = get_pvp_button_position(image)
+    follow_button = get_follow_monster_button(image, pos)
+    hash_button = hash_it(follow_button[10:11, 0:20])
+    return hash_button != hashed_follow_monster_button
+
+
+def press_follow_button(image: GrayImage):
+    pos = get_pvp_button_position(image)
+    x = pos[0]
+    y = pos[1]
+    mouse.left_click((x + 10 + 22, y + 10 - 49))
