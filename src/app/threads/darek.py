@@ -1,6 +1,7 @@
 import time
 
 from src.app.cavebot.cavebot import auto_mana_train, auto_move_to_next_waypoint
+from src.app.cavebot.combo_spell import combo_spell
 from src.app.healing import auto_heal_hp
 from src.app.middleware.battle_list import set_context_battle_list_middleware
 from src.app.middleware.screenshot import set_context_screenshot_middleware
@@ -51,6 +52,7 @@ class Darek:
     def handle_game_data_tasks(self):
         auto_heal_hp(self.context)
         auto_attack(self.context)
+        combo_spell(self.context)
         auto_mana_train(self.context)
         auto_move_to_next_waypoint(self.context)
         if not self.context.get_status_bar(StatusBarKeys.FOLLOW_MONSTER_ENABLED):

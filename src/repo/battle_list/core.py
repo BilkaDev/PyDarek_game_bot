@@ -20,7 +20,6 @@ def get_creatures_name(image: GrayImage) -> np.ndarray:
             monster_names = np.append(monster_names, name)
         elif monster_name_hashed_key != all_creatures_images_hash:
             monster_names = np.append(monster_names, 'All')
-            break
 
     return monster_names
 
